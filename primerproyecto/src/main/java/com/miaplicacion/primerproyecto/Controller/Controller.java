@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,8 +37,17 @@ public class Controller {
         persoServi.borrarPersona(id);
     }
     
-    @PutMapping("/cambiar/[id}")
-   public void editarPersona(@RequestBody Long id,Persona pers){
-       persoServi.crearPersona(pers);
+    @PutMapping("/personas/editar/{id}")
+   public Persona editarPersona(@PathVariable Long id,
+                             @RequestParam ("nombre") String nuevoNombre,
+                             @RequestParam ("apellido") String nuevoApellido
+                             ){
+      return persoServi.editarPersona(id, nuevoNombre, nuevoApellido);
    }
 }
+/*
+@PutMapping("/cambiar/{id}")
+   public void editarPersona(@PathVariable Long id,@RequestBody Persona pers){
+       persoServi.crearPersona(pers);
+   }
+*/

@@ -14,9 +14,10 @@ public class Persona {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String nombre;
     private String apellido;
-    private Long id;
+    
     
     public Persona(){
         
