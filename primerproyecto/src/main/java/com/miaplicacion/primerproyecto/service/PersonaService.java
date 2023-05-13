@@ -35,11 +35,13 @@ public class PersonaService implements IPersonaService {
     }
     
     @Override
-    public Persona editarPersona(Long id, String nuevoNombre, String nuevoApellido) {
+    public Persona editarPersona(Long id, String nuevoNombre, String nuevoApellido,String nuevaDescripcion) {
         // busco a la persona en cuestion
         Persona per = buscarPersona(id);
+      
 
         // actualizo los datos de la persona
+        per.setDescripcion( nuevaDescripcion);
         per.setApellido(nuevoApellido);
         per.setNombre(nuevoNombre);
 
@@ -49,6 +51,5 @@ public class PersonaService implements IPersonaService {
         // retorno la nueva persona
         return per;
     }
-    
     
 }
