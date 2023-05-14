@@ -38,12 +38,12 @@ public class PersonController {
       return persoServi.verPersonas() ;
     }
     @DeleteMapping("/eliminar/{id}")
-    public void borrarPersona(@PathVariable Long id){
+    public void borrarPersona(@PathVariable Integer id){
         persoServi.borrarPersona(id);
     }
     
     @PutMapping("/personas/editar/{id}")
-   public Persona editarPersona(@PathVariable Long id,
+   public Persona editarPersona(@PathVariable Integer id,
                              @RequestParam ("nombre") String nuevoNombre,
                              @RequestParam ("apellido") String nuevoApellido,
                              @RequestParam ("descripcion") String nuevaDescripcion

@@ -12,7 +12,7 @@ public class PersonaService implements IPersonaService {
 
     
     @Autowired
-    public PersonaRepository persoRepo ;
+    public PersonaRepository persoRepo ; 
     
     @Override
     public List<Persona> verPersonas() {
@@ -25,17 +25,17 @@ public class PersonaService implements IPersonaService {
     }
 
     @Override
-    public void borrarPersona(Long id) {
+    public void borrarPersona(Integer id) {
        persoRepo.deleteById(id);
     }
 
     @Override
-    public Persona buscarPersona(Long id) {
+    public Persona buscarPersona(Integer id) {
         return persoRepo.findById(id).orElse(null);
     }
     
     @Override
-    public Persona editarPersona(Long id, String nuevoNombre, String nuevoApellido,String nuevaDescripcion) {
+    public Persona editarPersona(Integer id, String nuevoNombre, String nuevoApellido,String nuevaDescripcion) {
         // busco a la persona en cuestion
         Persona per = buscarPersona(id);
       
@@ -51,5 +51,7 @@ public class PersonaService implements IPersonaService {
         // retorno la nueva persona
         return per;
     }
+    
+    
     
 }

@@ -12,9 +12,9 @@ public interface IPersonaService {
     
     public void crearPersona(Persona per);
     
-    public void  borrarPersona(Long id);
+    public void  borrarPersona(Integer id);
     
-    public Persona buscarPersona(Long id);
+    public Persona buscarPersona(Integer id);
 
-    public Persona editarPersona(Long id, String nuevoNombre, String nuevoApellido,String nuevaDescripcion);
+    public Persona editarPersona(Integer id, String nuevoNombre, String nuevoApellido,String nuevaDescripcion);
 }

@@ -44,6 +44,7 @@ import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
@@ -78,16 +79,21 @@ public class SecurityConfiguration  {
     }
     
     @Bean
+public UserDetailsService userDetailsService(DataSource dataSource) {
+    JdbcDaoImpl jdbcDao = new JdbcDaoImpl();
+    jdbcDao.setDataSource(dataSource);
+    return jdbcDao;
+}
+
+   @Bean
 UserDetailsService users() {
     return new InMemoryUserDetailsManager(
-            User.withUsername("LuluCapo")
-                    .password(passwordEncoder().encode("Sisepudo"))
+            User.withUsername("Diosteamo")
+                    .password(passwordEncoder().encode("1234"))
                     .roles(Roles.USER)
                     .build()
     );
 } 
-
-  
     
     
     // With newer Spring Security versions HttpSecurity is configured using SecurityFilterChain and no longer extend WebSecurityConfigurerAdapater.
