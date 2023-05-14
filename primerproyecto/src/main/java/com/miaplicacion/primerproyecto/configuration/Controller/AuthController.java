@@ -1,12 +1,16 @@
 
 package com.miaplicacion.primerproyecto.configuration.Controller;
 
+import com.miaplicacion.primerproyecto.configuration.Dto.JwtDto;
+import com.miaplicacion.primerproyecto.configuration.Dto.LoginUsuario;
+import com.miaplicacion.primerproyecto.configuration.Dto.NuevoUsuario;
 import com.miaplicacion.primerproyecto.configuration.Entity.Rol;
 import com.miaplicacion.primerproyecto.configuration.Entity.Usuario;
 import com.miaplicacion.primerproyecto.configuration.Service.RolService;
 import com.miaplicacion.primerproyecto.configuration.Service.UsuarioService;
 import com.miaplicacion.primerproyecto.configuration.enums.RolNombre;
 import com.miaplicacion.primerproyecto.configuration.jwt.JwtProvider;
+import java.util.HashSet;
 import java.util.Set;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,16 +52,16 @@ public class AuthController {
         if(bindingResult.hasErrors())
             return new ResponseEntity(new Mensaje("campos mal puestos o email invalid"),HttpStatus.BAD_REQUEST);
         
-        if(usuarioService.existsByNombreUsuario(nombreUsuario.getNombreUsuario))
+        if(usuarioService.existsByNombreUsuario(nuevoUsuario.getNombreUsuario()))
              return new ResponseEntity(new Mensaje("ese nombre ya existe"),HttpStatus.BAD_REQUEST);
         
-        if(usuarioService.existsByEmail(nombreUsuario.getEmail))
+        if(usuarioService.existsByEmail(nuevoUsuario.getEmail()))
              return new ResponseEntity(new Mensaje("ese email ya existe"),HttpStatus.BAD_REQUEST);
         
         Usuario usuario = new Usuario(nuevoUsuario.getNombre(),nuevoUsuario.getNombreUsuario(),
-                nuevoUsuario.getEmail(),passwordEncoder.encode(nuevoUsuario.getPassqord()));
+                nuevoUsuario.getEmail(),passwordEncoder.encode(nuevoUsuario.getPassword()));
         
-        Set<Rol> roles = new HAset<>();
+        Set<Rol> roles = new HashSet<>();
         roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
         
         if(nuevoUsuario.getRoles().contains("admin"))
@@ -69,7 +73,7 @@ public class AuthController {
         
     }
     @PostMapping("/login")
-    public ResponseEntity<JwtDTO>login(@Valid @RequestBody LoginUsuario loginUsuario,BindingResult bindingResult){
+    public ResponseEntity<JwtDto>login(@Valid @RequestBody LoginUsuario loginUsuario,BindingResult bindingResult){
         if(bindingResult.hasErrors())
              return new ResponseEntity(new Mensaje("Campos mal puestos"),HttpStatus.BAD_REQUEST);
         
