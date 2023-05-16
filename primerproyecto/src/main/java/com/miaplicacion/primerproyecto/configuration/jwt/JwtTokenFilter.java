@@ -19,10 +19,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-@Component
-public class JwtTokenFilter  extends OncePerRequestFilter{
+
+public class JwtTokenFilter  extends OncePerRequestFilter { 
     
-    private static final Logger logger = LoggerFactory.getLogger(JwtProvider.class);
+    private static final Logger logger = LoggerFactory.getLogger(JwtTokenFilter.class);
     
     @Autowired
     JwtProvider jwtProvider;
@@ -48,8 +48,8 @@ public class JwtTokenFilter  extends OncePerRequestFilter{
     
     private String getToken(HttpServletRequest request){
         String header = request.getHeader("Authorization");
-        if(header != null && header.startsWith("Barrer"))
-            return header.replace("Barrer","");
+        if(header != null && header.startsWith("Bearer"))
+            return header.replace("Bearer","");
            return null;
     }
 }

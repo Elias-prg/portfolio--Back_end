@@ -1,11 +1,10 @@
-/*
+
 package com.miaplicacion.primerproyecto.Controller;
-/*
-import java.util.List;
+
 import com.miaplicacion.primerproyecto.model.Persona;
 import com.miaplicacion.primerproyecto.service.IPersonaService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,13 +16,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
- //@CrossOrigin(origins ="http://localhost:4200",maxAge = 3600)
+
+ 
+
+//@RestController
+//@RequestMappin("/persona")
+//@CrossOrigin(origins ="http://localhost:4200")
 @RestController
-public class Controller {
+public class PersonaController {
     
     @Autowired
     private IPersonaService persoServi ;
     
+    //@PreAuthorize( "hasRole('ADMIN')")
     @PostMapping("/new/persona")
     public void agregarPersona(@RequestBody Persona pers){
         persoServi.crearPersona(pers);
@@ -34,23 +39,28 @@ public class Controller {
     public List<Persona> verPersona(){
       return persoServi.verPersonas() ;
     }
+    
+   // @PreAuthorize( "hasRole('ADMIN')")
     @DeleteMapping("/eliminar/{id}")
-    public void borrarPersona(@PathVariable Long id){
+    public void borrarPersona(@PathVariable Integer id){
         persoServi.borrarPersona(id);
     }
     
-    @PutMapping("/personas/editar/{id}")
-   public Persona editarPersona(@PathVariable Long id,
+   // @PreAuthorize( "hasRole('ADMIN') ")
+    @PutMapping("/editar/personas/{id}")
+   public Persona editarPersona(@PathVariable Integer id,
                              @RequestParam ("nombre") String nuevoNombre,
                              @RequestParam ("apellido") String nuevoApellido,
                              @RequestParam ("descripcion") String nuevaDescripcion
+                   //        @RequestParam ("img") String nuevaImg
                              ){
-      return persoServi.editarPersona(id, nuevoNombre, nuevoApellido,nuevaDescripcion);
+      Persona persona = persoServi.buscarPersona(id);
+      
+      persona.setNombre(nuevoNombre);
+      persona.setApellido(nuevoApellido);
+      persona.setDescripcion(nuevaDescripcion);
+    //  persona.setImg(nuevaImg);
+    persoServi.crearPersona(persona);
+    return persona ;
    }
 }
-/*
-@PutMapping("/cambiar/{id}")
-   public void editarPersona(@PathVariable Long id,@RequestBody Persona pers){
-       persoServi.crearPersona(pers);
-   }
-*/
