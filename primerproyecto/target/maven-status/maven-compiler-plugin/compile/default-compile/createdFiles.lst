@@ -3,11 +3,14 @@ com\miaplicacion\primerproyecto\configuration\Controller\AuthController.class
 com\miaplicacion\primerproyecto\model\Persona.class
 com\miaplicacion\primerproyecto\configuration\Entity\Rol.class
 com\miaplicacion\primerproyecto\configuration\Dto\JwtDto.class
+com\miaplicacion\primerproyecto\repository\REduyExp.class
 com\miaplicacion\primerproyecto\configuration\Repository\iUsuarioRepository.class
 com\miaplicacion\primerproyecto\configuration\Dto\NuevoUsuario.class
+com\miaplicacion\primerproyecto\Controller\CEduyexp.class
 com\miaplicacion\primerproyecto\service\PersonaService.class
 com\miaplicacion\primerproyecto\configuration\jwt\JwtProvider.class
 com\miaplicacion\primerproyecto\configuration\jwt\JwtTokenFilter.class
+com\miaplicacion\primerproyecto\service\Seduyexp.class
 com\miaplicacion\primerproyecto\configuration\SecurityConfiguration.class
 com\miaplicacion\primerproyecto\configuration\jwt\JwtEntryPoint.class
 com\miaplicacion\primerproyecto\configuration\enums\RolNombre.class
@@ -16,9 +19,12 @@ com\miaplicacion\primerproyecto\configuration\Controller\Mensaje.class
 com\miaplicacion\primerproyecto\repository\PersonaRepository.class
 com\miaplicacion\primerproyecto\configuration\Entity\Usuario.class
 com\miaplicacion\primerproyecto\configuration\Service\UserDetailsImpl.class
+com\miaplicacion\primerproyecto\Dto\DtoEduyexp.class
 com\miaplicacion\primerproyecto\configuration\Repository\iRolRepository.class
+com\miaplicacion\primerproyecto\WebConfig.class
 com\miaplicacion\primerproyecto\configuration\Service\UsuarioService.class
 com\miaplicacion\primerproyecto\PrimerproyectoApplication.class
 com\miaplicacion\primerproyecto\Controller\PersonaController.class
 com\miaplicacion\primerproyecto\configuration\Service\RolService.class
+com\miaplicacion\primerproyecto\model\EduyExp.class
 com\miaplicacion\primerproyecto\configuration\Entity\UsuarioPrincipal.class
