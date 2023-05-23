@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 //@RestController
 //@RequestMappin("/persona")
-//@CrossOrigin(origins ="http://localhost:4200")
+//@CrossOrigin(origins ="http://localhost:4200" o "hosting-proyectoa.web.app")
 @RestController
 public class PersonaController {
     
