@@ -23,7 +23,7 @@ import org.apache.commons.lang3.StringUtils;
 
 @RestController
 @RequestMapping("/info")
-@CrossOrigin(origins = "hosting-proyectoa.web.app")
+@CrossOrigin(origins = "https://hosting-proyectoa.web.app")
 public class CEduyexp {
      @Autowired
     Seduyexp sEduyexp;
